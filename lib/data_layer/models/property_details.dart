@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:funda/data_layer/models/property_image.dart';
 
 /// Keeps the detailed data of a Property object.
-class PropertyDetails {
+class PropertyDetails extends Equatable {
   /// Id
   final String id;
 
@@ -21,7 +22,7 @@ class PropertyDetails {
   final double? longitude;
 
   /// Creates new [PropertyDetails]
-  PropertyDetails({
+  const PropertyDetails({
     required this.id,
     required this.images,
     required this.address,
@@ -29,4 +30,14 @@ class PropertyDetails {
     required this.latitude,
     required this.longitude,
   });
+
+  @override
+  List<Object?> get props => [
+        id,
+        images,
+        address,
+        fullDescription,
+        latitude,
+        longitude,
+      ];
 }

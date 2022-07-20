@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../business_layer/cubits/property_cubit.dart';
+import '../business_layer/cubits/property_details_cubit.dart';
 import '../business_layer/cubits/property_state.dart';
+import 'property_details_screen.dart';
 
 /// Screen for displaying list of property objects.
 /// Depends on [PropertyCubit] which state store all the list of fetched objects.
@@ -33,22 +35,20 @@ class PropertiesScreen extends StatelessWidget {
             ...cubit.state.properties
                 .map(
                   (property) => InkWell(
-                    onTap: () {
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (newContext) => BlocProvider.value(
-                      //       value: context.read<PropertyDetailsCubit>()
-                      //         ..getPropertyDetails(
-                      //           propertyNumber: property.objectNumber,
-                      //         ),
-                      //       child: PropertyDetailsScreen(
-                      //         id: property.id,
-                      //         title: property.title,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // );
-                    },
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (newContext) => BlocProvider.value(
+                          value: context.read<PropertyDetailsCubit>()
+                            ..getPropertyDetails(
+                              propertyId: property.id,
+                            ),
+                          child: PropertyDetailsScreen(
+                            propertyId: property.id,
+                            title: property.address,
+                          ),
+                        ),
+                      ),
+                    ),
                     child: Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       margin: const EdgeInsets.all(8.0),

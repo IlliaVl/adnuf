@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'business_layer/cubits/property_cubit.dart';
+import 'business_layer/cubits/property_details_cubit.dart';
 import 'data_layer/providers/funda_provider.dart';
 import 'data_layer/repositories/funda_repository.dart';
 import 'data_layer/repositories/property_repository.dart';
@@ -41,11 +42,11 @@ class MyApp extends StatelessWidget {
               repository: propertyRepository,
             )..getProperties(),
           ),
-          // BlocProvider<PropertyDetailsCubit>(
-          //   create: (context) => PropertyDetailsCubit(
-          //     repository: propertyRepository,
-          //   ),
-          // ),
+          BlocProvider<PropertyDetailsCubit>(
+            create: (context) => PropertyDetailsCubit(
+              repository: propertyRepository,
+            ),
+          ),
         ],
         child: const PropertiesScreen(),
       ),

@@ -19,14 +19,5 @@ class PropertiesDTO {
                   (x) => PropertyDTO.fromJson(x),
                 ),
               ),
-        // objects: json["Objects"]?.map(
-        //   (x) {
-        //     return PropertyDTO.fromJson(x);
-        //   },
-        // ),
       );
 }
-// objects: json["Objects"] == null
-//     ? null
-//     : List<PropertyDTO>.from(
-//         json["Objects"]?.map((x) => PropertyDTO.fromJson(x))),

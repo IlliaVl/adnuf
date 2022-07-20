@@ -1,5 +1,10 @@
 class PropertyDetailsDTO {
   PropertyDetailsDTO({
+    required this.internalId,
+    required this.media,
+    required this.adres,
+    required this.wgs84X,
+    required this.wgs84Y,
     this.aangebodenSinds,
     this.aangebodenSindsTekst,
     this.aantalBadkamers,
@@ -7,7 +12,6 @@ class PropertyDetailsDTO {
     this.aantalSlaapkamers,
     this.aantalWoonlagen,
     this.aanvaarding,
-    this.adres,
     this.afgekochtDatum,
     this.balkonDakterras,
     this.bedrijfsruimteCombinatieObject,
@@ -46,7 +50,6 @@ class PropertyDetailsDTO {
     this.indVeilingProduct,
     this.indVideo,
     this.inhoud,
-    this.internalId,
     this.isIngetrokken,
     this.isVerhuurd,
     this.isVerkocht,
@@ -60,7 +63,6 @@ class PropertyDetailsDTO {
     this.makelaarId,
     this.makelaarTelefoon,
     this.medeAanbieders,
-    this.media,
     this.mediaFoto,
     this.mobileUrl,
     this.objectType,
@@ -104,8 +106,6 @@ class PropertyDetailsDTO {
     this.video,
     this.volledigeOmschrijving,
     this.voorzieningen,
-    this.wgs84X,
-    this.wgs84Y,
     this.warmWater,
     this.woonOppervlakte,
     this.eersteHuurPrijs,
@@ -134,7 +134,7 @@ class PropertyDetailsDTO {
   final dynamic aantalSlaapkamers;
   final String? aantalWoonlagen;
   final String? aanvaarding;
-  final String? adres;
+  final String adres;
   final dynamic afgekochtDatum;
   final dynamic balkonDakterras;
   final dynamic bedrijfsruimteCombinatieObject;
@@ -173,7 +173,7 @@ class PropertyDetailsDTO {
   final bool? indVeilingProduct;
   final bool? indVideo;
   final int? inhoud;
-  final String? internalId;
+  final String internalId;
   final bool? isIngetrokken;
   final bool? isVerhuurd;
   final bool? isVerkocht;
@@ -187,7 +187,7 @@ class PropertyDetailsDTO {
   final int? makelaarId;
   final String? makelaarTelefoon;
   final List<dynamic>? medeAanbieders;
-  final List<Media>? media;
+  final List<Media> media;
   final List<String>? mediaFoto;
   final String? mobileUrl;
   final String? objectType;
@@ -231,8 +231,8 @@ class PropertyDetailsDTO {
   final Video? video;
   final String? volledigeOmschrijving;
   final dynamic voorzieningen;
-  final double? wgs84X;
-  final double? wgs84Y;
+  final double wgs84X;
+  final double wgs84Y;
   final String? warmWater;
   final int? woonOppervlakte;
   final dynamic eersteHuurPrijs;
@@ -330,9 +330,7 @@ class PropertyDetailsDTO {
         makelaarId: json["MakelaarId"],
         makelaarTelefoon: json["MakelaarTelefoon"],
         // medeAanbieders: json["MedeAanbieders"] == null ? null : List<dynamic>?.from(json["MedeAanbieders"].map((x) => x)),
-        media: json["Media"] == null
-            ? null
-            : List<Media>.from(json["Media"].map((x) => Media.fromJson(x))),
+        media: List<Media>.from(json["Media"].map((x) => Media.fromJson(x))),
         mediaFoto: json["Media-Foto"] == null
             ? null
             : List<String>.from(json["Media-Foto"].map((x) => x)),
@@ -520,22 +518,22 @@ class Kenmerken {
 
 class Media {
   Media({
-    this.categorie,
+    required this.categorie,
+    required this.mediaItems,
     this.contentType,
     this.id,
     this.indexNumber,
-    this.mediaItems,
     this.metadata,
     this.omschrijving,
     this.registratieVerplicht,
     this.soort,
   });
 
-  final int? categorie;
+  final int categorie;
   final int? contentType;
   final String? id;
   final int? indexNumber;
-  final List<MediaItem>? mediaItems;
+  final List<MediaItem> mediaItems;
   final String? metadata;
   final String? omschrijving;
   final bool? registratieVerplicht;
@@ -546,10 +544,8 @@ class Media {
         contentType: json["ContentType"],
         id: json["Id"],
         indexNumber: json["IndexNumber"],
-        mediaItems: json["MediaItems"] == null
-            ? null
-            : List<MediaItem>.from(
-                json["MediaItems"].map((x) => MediaItem.fromJson(x))),
+        mediaItems: List<MediaItem>.from(
+            json["MediaItems"].map((x) => MediaItem.fromJson(x))),
         metadata: json["Metadata"],
         omschrijving: json["Omschrijving"],
         registratieVerplicht: json["RegistratieVerplicht"],
@@ -559,18 +555,18 @@ class Media {
 
 class MediaItem {
   MediaItem({
-    this.category,
-    this.height,
-    this.url,
+    required this.category,
+    required this.height,
+    required this.url,
     this.urlSecure,
-    this.width,
+    required this.width,
   });
 
-  final int? category;
-  final int? height;
-  final String? url;
+  final int category;
+  final int height;
+  final String url;
   final String? urlSecure;
-  final int? width;
+  final int width;
 
   factory MediaItem.fromJson(Map<String, dynamic> json) => MediaItem(
         category: json["Category"],

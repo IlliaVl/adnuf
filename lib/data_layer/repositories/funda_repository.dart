@@ -1,4 +1,5 @@
 import 'package:funda/data_layer/mappings/properties_dto_mapping.dart';
+import 'package:funda/data_layer/mappings/property_details_dto_mapping.dart';
 
 import '../models/property.dart';
 import '../models/property_details.dart';
@@ -23,8 +24,8 @@ class FundaRepository implements PropertyRepositoryInterface {
   @override
   Future<PropertyDetails> getPropertyDetails({
     required String id,
-  }) {
-    // TODO: implement getPropertyDetails
-    throw UnimplementedError();
+  }) async {
+    final dto = await _fundaProvider.getProperty(id: id);
+    return dto.toPropertyDetails();
   }
 }

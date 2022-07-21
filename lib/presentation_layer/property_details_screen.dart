@@ -86,36 +86,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 16.0),
-                        InkWell(
-                          onTap: () {
-                            final propertyDetails = context
-                                .read<PropertyDetailsCubit>()
-                                .state
-                                .propertyDetails;
-                            MapsLauncher.launchCoordinates(
-                              propertyDetails?.latitude ?? 0.0,
-                              propertyDetails?.longitude ?? 0.0,
-                            );
-                          },
-                          child: Column(
-                            children: const [
-                              SizedBox(
-                                height: 60.0,
-                                child: Image(
-                                  image: AssetImage('assets/marker.png'),
-                                ),
-                              ),
-                              // SizedBox(height: 8.0),
-                              Text(
-                                'Kaart',
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        const _MapButton(),
                       ],
                     ),
                     const SizedBox(height: 16.0),
@@ -133,6 +104,44 @@ class PropertyDetailsScreen extends StatelessWidget {
           ),
         );
       }),
+    );
+  }
+}
+
+class _MapButton extends StatelessWidget {
+  const _MapButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        final propertyDetails =
+            context.read<PropertyDetailsCubit>().state.propertyDetails;
+        MapsLauncher.launchCoordinates(
+          propertyDetails?.latitude ?? 0.0,
+          propertyDetails?.longitude ?? 0.0,
+        );
+      },
+      child: Column(
+        children: const [
+          SizedBox(
+            height: 60.0,
+            child: Image(
+              image: AssetImage('assets/marker.png'),
+            ),
+          ),
+          // SizedBox(height: 8.0),
+          Text(
+            'Kaart',
+            style: TextStyle(
+              fontSize: 12.0,
+              color: Colors.blue,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

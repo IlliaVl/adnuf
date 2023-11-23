@@ -1,7 +1,7 @@
+import '../../domain/models/property_error.dart';
 import '../abstracts/network/net_client.dart';
-import '../models/dtos/properties_dto.dart';
-import '../models/dtos/property_details_dto.dart';
-import '../models/property_error.dart';
+import '../dtos/properties_dto.dart';
+import '../dtos/property_details_dto.dart';
 
 /// Provides data related to property objects from Funda API.
 class FundaProvider {

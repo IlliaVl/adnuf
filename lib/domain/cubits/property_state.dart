@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:equatable/equatable.dart';
 
-import '../../data_layer/models/property.dart';
+import '../models/property.dart';
 
 /// Represents the state of [PropertyCubit]
 class PropertyState extends Equatable {

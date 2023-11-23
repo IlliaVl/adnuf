@@ -1,4 +1,4 @@
-import '../models/dtos/property_dto.dart';
+import '../../data/dtos/property_dto.dart';
 import '../models/property.dart';
 
 /// Extension that provides mappings for [PropertyDTO].

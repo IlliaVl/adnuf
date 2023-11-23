@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:funda/presentation_layer/properties_screen.dart';
 
-import 'business_layer/cubits/property_cubit.dart';
-import 'business_layer/cubits/property_details_cubit.dart';
-import 'data_layer/repositories/property_repository.dart';
+import 'config/injection.dart';
+import 'domain/cubits/property_cubit.dart';
+import 'domain/cubits/property_details_cubit.dart';
+import 'presentation/properties_screen.dart';
 
 /// The application widget
 class MyApp extends StatelessWidget {
   /// Creates the [MyApp]
   const MyApp({
-    Key? key,
-    required this.propertyRepository,
-  }) : super(key: key);
+    super.key,
+  });
 
-  /// The repository responsible for user roles.
-  final PropertyRepositoryInterface propertyRepository;
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,14 +23,10 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<PropertyCubit>(
-            create: (context) => PropertyCubit(
-              repository: propertyRepository,
-            )..getProperties(),
+            create: (context) => getIt<PropertyCubit>()..getProperties(),
           ),
           BlocProvider<PropertyDetailsCubit>(
-            create: (context) => PropertyDetailsCubit(
-              repository: propertyRepository,
-            ),
+            create: (context) => getIt<PropertyDetailsCubit>(),
           ),
         ],
         child: const PropertiesScreen(),

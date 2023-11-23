@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 
-import '../business_layer/cubits/property_details_cubit.dart';
-import '../business_layer/cubits/property_details_state.dart';
+import '../domain/cubits/property_details_cubit.dart';
+import '../domain/cubits/property_details_state.dart';
 import 'photos_screen.dart';
 
 /// Screen for displaying details of the property object.
@@ -18,10 +18,10 @@ class PropertyDetailsScreen extends StatelessWidget {
 
   /// Creates new [PropertyDetailsScreen].
   const PropertyDetailsScreen({
-    Key? key,
+    super.key,
     required this.propertyId,
     this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -109,9 +109,7 @@ class PropertyDetailsScreen extends StatelessWidget {
 }
 
 class _MapButton extends StatelessWidget {
-  const _MapButton({
-    Key? key,
-  }) : super(key: key);
+  const _MapButton();
 
   @override
   Widget build(BuildContext context) {
@@ -124,8 +122,8 @@ class _MapButton extends StatelessWidget {
           propertyDetails?.longitude ?? 0.0,
         );
       },
-      child: Column(
-        children: const [
+      child: const Column(
+        children: [
           SizedBox(
             height: 60.0,
             child: Image(

@@ -1,5 +1,5 @@
-import '../models/property.dart';
-import '../models/property_details.dart';
+import '../../models/property.dart';
+import '../../models/property_details.dart';
 
 /// Abstract definition for the property repository.
 abstract class PropertyRepositoryInterface {

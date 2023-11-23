@@ -1,4 +1,4 @@
-import 'package:funda/data_layer/models/dtos/property_dto.dart';
+import 'property_dto.dart';
 
 /// Data transfer object for list of [PropertyDTO] objects.
 class PropertiesDTO {

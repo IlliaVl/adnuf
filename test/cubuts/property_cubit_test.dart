@@ -1,8 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:funda/business_layer/cubits/property_cubit.dart';
-import 'package:funda/business_layer/cubits/property_state.dart';
-import 'package:funda/data_layer/models/property.dart';
-import 'package:funda/data_layer/repositories/property_repository.dart';
+import 'package:funda/domain/abstracts/repositories/property_repository.dart';
+import 'package:funda/domain/cubits/property_cubit.dart';
+import 'package:funda/domain/cubits/property_state.dart';
+import 'package:funda/domain/models/property.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../data_layer/models/property_details.dart';
+import '../models/property_details.dart';
 
 /// Represents the state of [PropertyDetailsCubit]
 class PropertyDetailsState extends Equatable {

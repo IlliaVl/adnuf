@@ -1,12 +1,14 @@
-import 'package:funda/data_layer/mappings/properties_dto_mapping.dart';
-import 'package:funda/data_layer/mappings/property_details_dto_mapping.dart';
+import 'package:injectable/injectable.dart';
 
+import '../../data/providers/funda_provider.dart';
+import '../abstracts/repositories/property_repository.dart';
+import '../mappings/properties_dto_mapping.dart';
+import '../mappings/property_details_dto_mapping.dart';
 import '../models/property.dart';
 import '../models/property_details.dart';
-import '../providers/funda_provider.dart';
-import 'property_repository.dart';
 
 /// Handles all the properties data
+@Injectable(as: PropertyRepositoryInterface)
 class FundaRepository implements PropertyRepositoryInterface {
   final FundaProvider _fundaProvider;
 

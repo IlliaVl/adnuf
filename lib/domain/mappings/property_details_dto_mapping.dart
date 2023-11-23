@@ -1,4 +1,4 @@
-import '../models/dtos/property_details_dto.dart';
+import '../../data/dtos/property_details_dto.dart';
 import '../models/property_details.dart';
 import '../models/property_image.dart';
 

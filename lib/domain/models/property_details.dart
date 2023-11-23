@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:funda/data_layer/models/property_image.dart';
+
+import 'property_image.dart';
 
 /// Keeps the detailed data of a Property object.
 class PropertyDetails extends Equatable {

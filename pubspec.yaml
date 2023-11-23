@@ -38,6 +38,9 @@ dependencies:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
   envied: ^0.5.2
+  get_it: ^7.6.4
+  injectable: ^2.3.2
+  dio: ^5.3.4
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +57,7 @@ dev_dependencies:
   maps_launcher: ^2.0.1
   build_runner: ^2.4.6
   envied_generator: ^0.5.2
+  injectable_generator: ^2.4.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

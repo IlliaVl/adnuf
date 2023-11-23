@@ -2,13 +2,14 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../../config/env.dart';
 import '../models/dtos/properties_dto.dart';
 import '../models/dtos/property_details_dto.dart';
 import '../models/property_error.dart';
 
 /// Provides data related to property objects from Funda API.
 class FundaProvider {
-  static const _apiKey = 'ac1b0b1572524640a0ecc54de453ea9f';
+  static final _apiKey = Env.fundaApiKey;
   static const _baseUrl = 'partnerapi.funda.nl';
   final http.Client _httpClient;
 

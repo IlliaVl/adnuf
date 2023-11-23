@@ -1,16 +1,17 @@
-# funda
+# Funda Flutter Assignment
 
-A new Flutter project.
+Flutter app where users can list of objects and their details in the separate screen.
+The API endpoint to fetch the data is `https://partnerapi.funda.nl/feeds/Aanbod.svc/json/ac1b0b1572524640a0ecc54de453ea9f/?type=koop&zo=/amsterdam/tuin/&page={0}&pagesize=25`.
 
-## Getting Started
+## How to launch
 
-This project is a starting point for a Flutter application.
+Steps to launch app:
 
-A few resources to get you started if this is your first Flutter project:
+1. Create or add to the root directory of project .env file with the following line:
+   FUNDA_API_KEY=API_KEY
+   Where API_KEY is the key for authorization. Replace it with the real value.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Run `dart run build_runner build --delete-conflicting-outputs` from the root directory of the project.
+   It will create `env.g.dart` file.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Launch app as usual Flutter project.

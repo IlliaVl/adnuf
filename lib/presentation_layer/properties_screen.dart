@@ -78,7 +78,7 @@ class _PropertyTile extends StatelessWidget {
         ),
       ),
       child: Card(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
+        clipBehavior: Clip.antiAlias,
         margin: const EdgeInsets.all(8.0),
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8.0))),

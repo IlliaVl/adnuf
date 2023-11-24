@@ -12,6 +12,6 @@ Steps to launch app:
    Where API_KEY is the key for authorization. Replace it with the real value.
 
 2. Run `dart run build_runner build --delete-conflicting-outputs` from the root directory of the project.
-   It will create `env.g.dart` file.
+   It will create `env.g.dart` and `injection.config.dart` files.
 
 3. Launch app as usual Flutter project.

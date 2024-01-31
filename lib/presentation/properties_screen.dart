@@ -19,7 +19,8 @@ class PropertiesScreen extends StatelessWidget {
 
     return BlocListener<PropertyCubit, PropertyState>(
       listener: (context, state) {
-        if (!state.busy && state.error != PropertyStateErrors.none) {
+        if (state is ErrorPropertyState &&
+            state.error != PropertyStateErrors.none) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Something went wrong. Try later, please.'),
@@ -31,20 +32,26 @@ class PropertiesScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Funda'),
         ),
-        body: ListView(
-          children: [
-            ...cubit.state.properties.map(
-              (property) => _PropertyTile(property: property),
+        body: switch (cubit.state) {
+          final InitialPropertyState _ => const SizedBox(),
+          final LoadingPropertyState _ => const Center(
+              child: CircularProgressIndicator(),
             ),
-            if (cubit.state.busy)
-              const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: CircularProgressIndicator(),
+          final LoadedPropertyState state => ListView(
+              children: [
+                ...state.properties.map(
+                  (property) => _PropertyTile(property: property),
                 ),
+              ],
+            ),
+          final ErrorPropertyState _ => Center(
+              child: TextButton(
+                onPressed: cubit.getProperties,
+                child: const Text('Retry'),
               ),
-          ],
-        ),
+            ),
+          PropertyState() => const SizedBox(),
+        },
       ),
     );
   }
@@ -81,9 +88,10 @@ class _PropertyTile extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(8.0))),
         child: Column(
           children: [
-            Image.network(
-              property.imageUrl!,
-            ),
+            if (property.imageUrl?.isNotEmpty ?? false)
+              Image.network(
+                property.imageUrl!,
+              ),
             ListTile(
               title: Text(property.address ?? '--'),
             ),

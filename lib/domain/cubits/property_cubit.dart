@@ -14,33 +14,27 @@ class PropertyCubit extends Cubit<PropertyState> {
   PropertyCubit({
     required PropertyRepositoryInterface repository,
   })  : _repository = repository,
-        super(PropertyState());
+        super(InitialPropertyState());
 
   /// Loads all Properties.
   Future<void> getProperties({
     bool loadMore = false,
   }) async {
     emit(
-      state.copyWith(
-        busy: true,
-        error: PropertyStateErrors.none,
-      ),
+      LoadingPropertyState(),
     );
 
     try {
       final properties = await _repository.getProperties();
 
       emit(
-        state.copyWith(
+        LoadedPropertyState(
           properties: properties,
-          busy: false,
-          error: PropertyStateErrors.none,
         ),
       );
     } on PropertyException {
       emit(
-        state.copyWith(
-          busy: true,
+        ErrorPropertyState(
           error: PropertyStateErrors.generic,
         ),
       );

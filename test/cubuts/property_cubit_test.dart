@@ -3,6 +3,7 @@ import 'package:funda/domain/abstracts/repositories/property_repository.dart';
 import 'package:funda/domain/cubits/property_cubit.dart';
 import 'package:funda/domain/cubits/property_state.dart';
 import 'package:funda/domain/models/property.dart';
+import 'package:funda/domain/models/property_error.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
@@ -34,7 +35,7 @@ void main() {
     build: () => PropertyCubit(repository: _repository),
     verify: (c) => expect(
       c.state,
-      PropertyState(),
+      InitialPropertyState(),
     ),
   );
 
@@ -43,15 +44,29 @@ void main() {
     build: () => PropertyCubit(repository: _repository),
     act: (c) => c.getProperties(),
     expect: () => [
-      PropertyState(
-        busy: true,
-        error: PropertyStateErrors.none,
+      LoadingPropertyState(),
+      LoadedPropertyState(properties: _propertiesList),
+    ],
+    verify: (c) => verify(
+      () => _repository.getProperties(),
+    ).called(1),
+  );
+
+  blocTest<PropertyCubit, PropertyState>(
+    'Should handle exceptions',
+    build: () => PropertyCubit(repository: _repository),
+    setUp: () => when(
+      () => _repository.getProperties(),
+    ).thenThrow(
+      const PropertyException(
+        PropertyExceptionType.network,
+        'Some generic error',
       ),
-      PropertyState(
-        properties: _propertiesList,
-        busy: false,
-        error: PropertyStateErrors.none,
-      ),
+    ),
+    act: (c) => c.getProperties(),
+    expect: () => [
+      LoadingPropertyState(),
+      ErrorPropertyState(error: PropertyStateErrors.generic),
     ],
     verify: (c) => verify(
       () => _repository.getProperties(),
